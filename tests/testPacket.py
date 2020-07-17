@@ -2,10 +2,11 @@ import os
 import unittest
 import six
 
+from . import home
+
 from collections import OrderedDict
 from pyrad import packet
 from pyrad.client import Client
-from pyrad.tests import home
 from pyrad.dictionary import Dictionary
 try:
     import hashlib
@@ -28,7 +29,7 @@ class PacketConstructionTests(unittest.TestCase):
     klass = packet.Packet
 
     def setUp(self):
-        self.path = os.path.join(home, 'tests', 'data')
+        self.path = os.path.join(home, 'data')
         self.dict = Dictionary(os.path.join(self.path, 'simple'))
 
     def testBasicConstructor(self):
@@ -77,7 +78,7 @@ class PacketConstructionTests(unittest.TestCase):
 
 class PacketTests(unittest.TestCase):
     def setUp(self):
-        self.path = os.path.join(home, 'tests', 'data')
+        self.path = os.path.join(home, 'data')
         self.dict = Dictionary(os.path.join(self.path, 'full'))
         self.packet = packet.Packet(
             id=0, secret=six.b('secret'),
@@ -405,7 +406,7 @@ class AuthPacketConstructionTests(PacketConstructionTests):
 
 class AuthPacketTests(unittest.TestCase):
     def setUp(self):
-        self.path = os.path.join(home, 'tests', 'data')
+        self.path = os.path.join(home, 'data')
         self.dict = Dictionary(os.path.join(self.path, 'full'))
         self.packet = packet.AuthPacket(id=0, secret=six.b('secret'),
                 authenticator=six.b('01234567890ABCDEF'), dict=self.dict)
@@ -455,7 +456,7 @@ class AuthPacketTests(unittest.TestCase):
 
 class AuthPacketChapTests(unittest.TestCase):
     def setUp(self):
-        self.path = os.path.join(home, 'tests', 'data')
+        self.path = os.path.join(home, 'data')
         self.dict = Dictionary(os.path.join(self.path, 'chap'))
         # self.packet = packet.Packet(id=0, secret=six.b('secret'),
         #                             dict=self.dict)
@@ -495,7 +496,7 @@ class AcctPacketConstructionTests(PacketConstructionTests):
 
 class AcctPacketTests(unittest.TestCase):
     def setUp(self):
-        self.path = os.path.join(home, 'tests', 'data')
+        self.path = os.path.join(home, 'data')
         self.dict = Dictionary(os.path.join(self.path, 'full'))
         self.packet = packet.AcctPacket(id=0, secret=six.b('secret'),
                 authenticator=six.b('01234567890ABCDEF'), dict=self.dict)
