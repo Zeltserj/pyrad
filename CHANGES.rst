@@ -1,6 +1,24 @@
 Changelog
 =========
 
+2.4 - July 18, 2020
+-------------------
+
+* Use setup.cfg + pyproject to build pyrad
+
+* Use secrets.SysRandom instead of random.SystemRandom if possible
+
+* `.get` on Packets has an optional default parameter (to mimic dict.get())
+
+* Fix: authenthicator was refreshed before the packet was generated
+
+* Fixed #140 VerifyReply broken when multiple instances of same attribute are not adjacent on reply
+
+* Fixed #135 Missing send_packet for asyn Client
+
+* Fixed #126 python3 support for SaltCrypt
+  (was previously broken)
+
 2.3 - Feb 6, 2020
 ------------------
 
